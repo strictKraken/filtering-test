@@ -1,26 +1,35 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <CoursesPage :courses="coursesList"/>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import CoursesPage from './components/CoursesPage.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+	CoursesPage,
+  },
+  setup() {
+	let coursesList = [
+			{ name: "Courses in England", prices: [0, 100] }, 
+			{ name: "Courses in Germany", prices: [500, null] }, 
+			{ name: "Courses in Italy", prices: [100, 200] }, 
+			{ name: "Courses in Russia", prices: [null, 400] },
+			{ name: "Courses in China", prices: [50, 250] },
+			{ name: "Courses in USA", prices: [200, null] },
+			{ name: "Courses in Kazakhstan", prices: [56, 324] },
+			{ name: "Courses in France", prices: [null, null] },
+		];
+	return {
+		coursesList,
+	}
   }
 }
 </script>
 
 <style lang="scss">
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  
 }
 </style>
