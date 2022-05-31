@@ -33,6 +33,8 @@ export default {
         
         const startFilter = () => {
             coursesTmp.value = [...props.courses].filter(item => {
+                if(startNumber.value > endNumber.value && (startNumber.value !== null && startNumber.value !== '') && (endNumber.value !== null && endNumber.value !== '')) return false;
+
                 if(item[keyDict][0] === null && item[keyDict][1] === null) return true;
 
                 if(startNumber.value > item[keyDict][1] && item[keyDict][1] !== null ) {
@@ -43,25 +45,19 @@ export default {
                     if(endNumber.value === null || endNumber.value === '') return true;
                     return false;
                 }
-                if(startNumber.value > endNumber.value && startNumber.value !== null && endNumber.value !== null) return false;
+                
                 if(startNumber.value === null || startNumber.value === '') return true;
                 return true;
             })
         }
-
+        let aTure = -1;
+        let bTrue = 1;
         function sortCurses() {
+            let tmp = aTure;
+            aTure = bTrue;
+            bTrue = tmp;
             coursesTmp.value =  coursesTmp.value.sort((a,b) => {
-                if(a[keyDict][0] === null) {
-                    return -1;
-                }
-                
-                if(a[keyDict][0] < b[keyDict][0]) {
-                    return -1;
-                } else if (a[keyDict][0] > b[keyDict][0]) {
-                    return 1;
-                } else {
-                    return 0;
-                }
+                return a[keyDict][0] < b[keyDict][0] ? aTure : bTrue;
             })
         }
 
