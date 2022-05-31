@@ -32,6 +32,13 @@ export default {
         const keyDict = 'prices';
         
         const startFilter = () => {
+            if(startNumber.value < 0 || endNumber.value < 0) {
+                    alert("Inputed negative value");
+                    startNumber.value = '';
+                    endNumber.value = '';
+                    return false;
+            }
+
             coursesTmp.value = [...props.courses].filter(item => {
                 if(startNumber.value > endNumber.value && (startNumber.value !== null && startNumber.value !== '') && (endNumber.value !== null && endNumber.value !== '')) return false;
 
@@ -39,6 +46,7 @@ export default {
 
                 if(startNumber.value > item[keyDict][1] && item[keyDict][1] !== null ) {
                     if(startNumber.value === null || startNumber.value === '') return true;
+
                     return false;
                 }
                 if(endNumber.value < item[keyDict][0] && item[keyDict][0] !== null) {
